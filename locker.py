@@ -35,7 +35,14 @@ if __name__ == "__main__":
     parser.add_argument("-u", "--uppercase", action="store_true", help="Include uppercase letters")
     parser.add_argument("-d", "--digits", action="store_true", help="Include digits")
     parser.add_argument("-s", "--symbols", action="store_true", help="Include symbols")
+    
     args = parser.parse_args()
+
+    if not args.lowercase and not args.uppercase and not args.digits and not args.symbols:
+        args.lowercase = True
+        args.uppercase = True
+        args.digits = True
+        args.symbols = True
 
     password = generate_password(args.length, args.lowercase, args.uppercase, args.digits, args.symbols)
     if password:
